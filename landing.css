@@ -67,6 +67,18 @@ h1, h2, h3 { margin: 0; }
 .btn-ghost { background: var(--surface); border-color: var(--line); color: var(--ink); }
 .btn-ghost:hover { border-color: color-mix(in srgb, var(--ink) 25%, var(--line)); }
 .btn-light { background: #fbf8f4; color: #2b2118; }
+
+/* Przycisk w barwach GitHuba: ciemny w jasnym motywie, jasny w ciemnym. */
+.btn-github { --gh-bg: #1f2328; --gh-fg: #ffffff; --gh-pill: rgba(255, 255, 255, .14); background: var(--gh-bg); color: var(--gh-fg); border-color: var(--gh-bg); }
+:root[data-theme="dark"] .btn-github { --gh-bg: #f6f8fa; --gh-fg: #1f2328; --gh-pill: rgba(31, 35, 40, .1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-github { --gh-bg: #f6f8fa; --gh-fg: #1f2328; --gh-pill: rgba(31, 35, 40, .1); } }
+.btn-github:hover { box-shadow: 0 8px 24px -6px rgba(0, 0, 0, .35); transform: translateY(-1px); }
+.btn-github .gh-mark { fill: currentColor; flex: none; transition: transform .5s var(--spring); }
+.btn-github:hover .gh-mark { transform: rotate(-12deg) scale(1.08); }
+.gh-pill { display: inline-flex; align-items: center; gap: 5px; margin-left: 4px; padding: 4px 9px; border-radius: 999px; background: var(--gh-pill); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.gh-pill-star { fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; transition: transform .45s var(--spring), fill .2s, stroke .2s; }
+.btn-github:hover .gh-pill-star { fill: #e3b341; stroke: #e3b341; transform: rotate(72deg) scale(1.2); }
+.gh-pill [data-gh-stars][hidden] { display: none; }
 .magnetic { will-change: transform; }
 
 /* ── Shared ── */
@@ -406,6 +418,7 @@ h1, h2, h3 { margin: 0; }
   .numbers { grid-template-columns: repeat(2, 1fr); }
   .numbers .num:first-child { grid-column: 1 / -1; }
   .hero-cta .btn { flex: 1; padding: 0 16px; }
+  .hero-cta .btn-github { flex-basis: 100%; }
   .footer p { margin: 0; }
   .float-chip { font-size: 12px; padding: 6px 10px; }
 }
