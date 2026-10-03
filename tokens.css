@@ -1,4 +1,4 @@
-/* Wspólne tokeny: kolory, typografia, motywy. Używane przez landing i mapę. */
+/* Wspólne tokeny (kolory, typografia, motywy) i drobne komponenty używane na wszystkich stronach. */
 :root {
   --bg: #fbf8f4;
   --surface: #ffffff;
@@ -71,3 +71,20 @@
   color-scheme: dark;
 }
 
+
+/* ── Przycisk "gwiazdka na GitHubie" (github-star.js) ── */
+.gh-star {
+  display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 14px;
+  border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--ink-2); font: 500 14px/1 var(--font); text-decoration: none; white-space: nowrap;
+  transition: border-color .2s, color .2s;
+}
+.gh-star svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), fill .2s, stroke .2s; }
+.gh-star:hover { color: var(--ink); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+.gh-star:hover svg { fill: #e3b341; stroke: #e3b341; transform: rotate(72deg) scale(1.15); }
+.gh-star-count {
+  margin-left: 2px; padding: 3px 7px; border-radius: 999px; background: var(--surface-2);
+  font-size: 12px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.gh-star-count[hidden] { display: none; }
+@media (max-width: 640px) { .gh-star-label { display: none; } .gh-star { padding: 0 11px; } }

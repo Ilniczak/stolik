@@ -35,6 +35,8 @@ button, input, select { font: inherit; color: inherit; }
   border: 1px solid var(--line); background: var(--surface); cursor: pointer; color: var(--ink-2);
 }
 .theme-toggle:hover { color: var(--ink); }
+.topbar .gh-star { margin-left: auto; }
+.topbar .gh-star + .theme-toggle { margin-left: 0; }
 
 /* ── Hero ── */
 .hero { text-align: center; padding: 48px 16px 20px; }

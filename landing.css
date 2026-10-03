@@ -36,7 +36,7 @@ h1, h2, h3 { margin: 0; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; letter-spacing: -.01em; }
 .brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); font-size: 16px; }
 .nav-links { display: flex; gap: 24px; font-size: 15px; color: var(--ink-2); margin-right: auto; }
-.nav-links a { text-decoration: none; position: relative; }
+.nav-links a { text-decoration: none; position: relative; white-space: nowrap; }
 .nav-links a::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: currentColor;
   transform: scaleX(0); transform-origin: right; transition: transform .3s var(--ease-out);
@@ -365,6 +365,9 @@ h1, h2, h3 { margin: 0; }
 .final h2 { font: 800 clamp(32px, 5vw, 58px)/1.02 var(--display); letter-spacing: -.04em; position: relative; text-wrap: balance; }
 .final p { margin: 14px 0 28px; color: #e8d6c5; font-size: 18px; position: relative; }
 .final .btn { position: relative; }
+.final-star { margin: 22px 0 0 !important; font-size: 15px !important; }
+.final-star a { color: #e8d6c5; text-decoration: none; border-bottom: 1px solid rgba(232, 214, 197, .35); transition: color .2s, border-color .2s; }
+.final-star a:hover { color: #fff; border-color: #fff; }
 .cup { font-size: 52px; position: relative; display: inline-block; animation: wobble 4s ease-in-out infinite; }
 @keyframes wobble { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
 .steam { position: relative; height: 34px; display: flex; justify-content: center; gap: 10px; margin-bottom: -6px; }
@@ -385,6 +388,8 @@ h1, h2, h3 { margin: 0; }
 
 /* ── Responsive ── */
 @media (max-width: 980px) {
+  .nav-links { display: none; }
+  .nav .gh-star { margin-left: auto; }
   .hero { grid-template-columns: 1fr; }
   .hero-visual { max-width: 520px; width: 100%; margin: 0 auto; }
   .pain-grid { grid-template-columns: repeat(2, 1fr); }
@@ -396,8 +401,6 @@ h1, h2, h3 { margin: 0; }
   .step:nth-child(even) .step-art { order: 0; }
 }
 @media (max-width: 640px) {
-  .nav-links { display: none; }
-  .nav .icon-btn { margin-left: auto; }
   .nav { gap: 10px; }
   .pain-grid, .feature-grid { grid-template-columns: 1fr; }
   .numbers { grid-template-columns: repeat(2, 1fr); }
