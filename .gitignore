@@ -1,0 +1,10 @@
+node_modules/
+.dev/
+.env
+.env.*
+!.env.example
+.vercel/
+.DS_Store
+
+# Robocze dane źródłowe (zostają tylko lokalnie)
+*.xlsx

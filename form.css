@@ -1,0 +1,133 @@
+/* Strona "Zaproponuj miejsce". Bazuje na landing.css (nav, przyciski, stopka). */
+
+/* Atrybut hidden ma wygrywać z display: grid/flex poniżej. */
+[hidden] { display: none !important; }
+
+.suggest { max-width: var(--wrap); margin: 0 auto; padding: clamp(32px, 6vw, 64px) clamp(16px, 4vw, 40px) 0; }
+.suggest-head { max-width: 680px; margin-bottom: 36px; animation: heroIn .8s var(--ease-out) both; }
+.suggest-head h1 { font: 800 clamp(34px, 5vw, 56px)/1.02 var(--display); letter-spacing: -.04em; text-wrap: balance; }
+.suggest-head .lead { margin-left: 0; }
+
+.suggest-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 28px; align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; }
+
+/* ── Form ── */
+.form { padding: clamp(20px, 3vw, 32px); animation: heroIn .8s var(--ease-out) .1s both; }
+.form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.form fieldset > :not(legend) + :not(legend) { margin-top: 18px; }
+.form fieldset + fieldset { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line); }
+/* float wyjmuje legend z obramowania fieldsetu, więc linia nie przecina nagłówka */
+.form legend { float: left; width: 100%; font: 700 20px/1.2 var(--display); letter-spacing: -.02em; margin-bottom: 18px; padding: 0; }
+.form legend + * { clear: both; }
+.opt { font: 500 13px var(--font); color: var(--muted); letter-spacing: 0; margin-left: 6px; }
+.row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+
+.field { display: grid; gap: 7px; min-width: 0; }
+.field > label, .label { font-size: 14px; font-weight: 600; color: var(--ink); }
+.req { color: var(--accent); }
+.form input[type="text"], .form select, .form textarea {
+  width: 100%; font: inherit; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+  padding: 11px 14px; transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.form input[type="text"], .form select { height: 46px; }
+.form textarea { resize: vertical; min-height: 104px; line-height: 1.5; }
+.form select {
+  appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 36px;
+  background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238a7a6c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+}
+.form input::placeholder, .form textarea::placeholder { color: var(--muted); opacity: .8; }
+.form input:hover, .form select:hover, .form textarea:hover { border-color: color-mix(in srgb, var(--ink) 22%, var(--line)); }
+.form input:focus, .form select:focus, .form textarea:focus {
+  outline: none; border-color: var(--focus); background: var(--surface);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--focus) 18%, transparent);
+}
+.field.has-error input, .field.has-error textarea, .field.has-error select { border-color: #d0452f; }
+.err { margin: 0; font-size: 13px; color: #d0452f; min-height: 0; }
+.err:empty { display: none; }
+.field.has-error { animation: shake .35s ease; }
+@keyframes shake { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+.hint { margin: 0; font-size: 13px; color: var(--muted); }
+.counter { text-align: right; font-variant-numeric: tabular-nums; }
+.dup { color: var(--warn); background: var(--warn-bg); padding: 8px 12px; border-radius: 10px; }
+.dup a { color: inherit; font-weight: 600; }
+
+/* Pills (radio) */
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { position: relative; cursor: pointer; }
+.pill input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.pill span {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; border-radius: 999px; font-size: 14px; color: var(--ink-2);
+  border: 1px solid var(--line); background: var(--bg);
+  transition: background .2s, border-color .2s, color .2s, transform .2s var(--spring);
+}
+.pills-tight .pill span { min-width: 44px; justify-content: center; }
+.pill:hover span { border-color: color-mix(in srgb, var(--ink) 22%, var(--line)); }
+.pill input:checked + span {
+  border-color: var(--accent); color: var(--ink); font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 13%, var(--surface));
+}
+.pill input:active + span { transform: scale(.95); }
+.pill input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 2px; }
+.pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+.form-foot { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.spinner { display: none; width: 16px; height: 16px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
+.is-loading .spinner { display: inline-block; }
+.is-loading { pointer-events: none; opacity: .85; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.form-alert { margin-bottom: 20px; padding: 12px 14px; border-radius: 12px; font-size: 14px; background: color-mix(in srgb, #d0452f 12%, var(--surface)); color: #b23a27; }
+:root[data-theme="dark"] .form-alert { color: #f2a493; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .form-alert { color: #f2a493; } }
+
+/* ── Preview ── */
+.preview { position: sticky; top: 96px; animation: heroIn .8s var(--ease-out) .2s both; }
+.preview-label { margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.pv-card { padding: 20px; box-shadow: 0 24px 60px -24px rgba(43, 33, 24, .3); }
+.pv-top { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
+.pv-pin {
+  --c: var(--t-kawiarnia);
+  flex: none; width: 40px; height: 40px; border-radius: 50% 50% 50% 6px; transform: rotate(-45deg);
+  background: var(--c); border: 3px solid var(--surface); box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+  display: grid; place-items: center; transition: background .3s;
+}
+.pv-pin b { transform: rotate(45deg); color: #fff; font: 700 15px var(--font); }
+.pv-pin.bump { animation: bump .45s var(--spring); }
+@keyframes bump { 50% { transform: rotate(-45deg) scale(1.2); } }
+.pv-name { font: 700 22px/1.15 var(--display); letter-spacing: -.02em; overflow-wrap: anywhere; }
+.pv-name.is-empty, .pv-note.is-empty { color: var(--muted); }
+.pv-meta { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); overflow-wrap: anywhere; }
+.pv-feats { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.pv-feats li { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+.pv-feats b { color: var(--ink); font-weight: 600; transition: color .2s; }
+.pv-feats b.is-empty { color: var(--muted); font-weight: 500; }
+.pv-feats b.flash { animation: flash .6s ease; }
+@keyframes flash { from { color: var(--accent); } }
+.pv-note { margin: 14px 0 0; font-size: 14px; color: var(--ink-2); white-space: pre-line; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+.preview-foot { margin: 12px 4px 0; font-size: 13px; color: var(--muted); }
+
+/* ── Success ── */
+.success { max-width: 620px; margin: 0 auto; padding: clamp(36px, 6vw, 56px) 24px; text-align: center; outline: none; animation: chipIn .7s var(--spring); }
+.success h2 { font: 800 clamp(28px, 4vw, 40px)/1.05 var(--display); letter-spacing: -.03em; margin-top: 12px; }
+.success p { color: var(--ink-2); margin: 10px 0 24px; }
+.success-cta { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.check circle { fill: none; stroke: var(--good); stroke-width: 3; stroke-dasharray: 152; stroke-dashoffset: 152; animation: draw .6s var(--ease-out) forwards; }
+.check path { fill: none; stroke: var(--good); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw .4s var(--ease-out) .45s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 900px) {
+  .suggest-grid { grid-template-columns: 1fr; }
+  .preview { position: static; order: -1; }
+  .pv-feats, .pv-note { display: none; }
+  .pv-card { padding: 14px 16px; }
+  .pv-top { margin: 0; }
+  .preview-foot { display: none; }
+}
+@media (max-width: 560px) {
+  .row { grid-template-columns: 1fr; }
+  .form-foot .btn { width: 100%; }
+}

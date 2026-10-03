@@ -1,0 +1,4 @@
+# Nie publikuj plików roboczych na Vercelu.
+db/
+scripts/
+.dev/

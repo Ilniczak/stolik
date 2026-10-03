@@ -1,0 +1,73 @@
+/* Wspólne tokeny: kolory, typografia, motywy. Używane przez landing i mapę. */
+:root {
+  --bg: #fbf8f4;
+  --surface: #ffffff;
+  --surface-2: #f4eee7;
+  --ink: #2b2118;
+  --ink-2: #5c4d40;
+  --muted: #8a7a6c;
+  --line: #ebe1d6;
+  --accent: #6b4a33;
+  --accent-ink: #ffffff;
+  --focus: #b0784c;
+
+  --t-kawiarnia: #8b5a3c;
+  --t-coworking: #3e5c76;
+  --t-biblioteka: #4f7a55;
+  --t-darmowe: #b07d22;
+
+  --good: #3f7a4a;
+  --warn: #a86414;
+  --warn-bg: #fbefdc;
+
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 2px rgba(43, 33, 24, .05), 0 8px 24px rgba(43, 33, 24, .06);
+  --font: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Bricolage Grotesque", var(--font);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15110e;
+    --surface: #1e1915;
+    --surface-2: #28211b;
+    --ink: #f3ebe3;
+    --ink-2: #cdbfb1;
+    --muted: #9b8b7c;
+    --line: #342b24;
+    --accent: #d9a77c;
+    --accent-ink: #1b140f;
+    --t-kawiarnia: #d29a6f;
+    --t-coworking: #82a7c8;
+    --t-biblioteka: #8cbf91;
+    --t-darmowe: #e0b357;
+    --good: #8cc896;
+    --warn: #f0b066;
+    --warn-bg: #3a2a17;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15110e;
+  --surface: #1e1915;
+  --surface-2: #28211b;
+  --ink: #f3ebe3;
+  --ink-2: #cdbfb1;
+  --muted: #9b8b7c;
+  --line: #342b24;
+  --accent: #d9a77c;
+  --accent-ink: #1b140f;
+  --t-kawiarnia: #d29a6f;
+  --t-coworking: #82a7c8;
+  --t-biblioteka: #8cbf91;
+  --t-darmowe: #e0b357;
+  --good: #8cc896;
+  --warn: #f0b066;
+  --warn-bg: #3a2a17;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+

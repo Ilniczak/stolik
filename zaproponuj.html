@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>stolik · Zaproponuj miejsce</title>
+  <meta name="description" content="Znasz kawiarnię, coworking albo bibliotekę, w której dobrze się pracuje? Zaproponuj ją na mapę." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css?v=20261002e" />
+  <link rel="stylesheet" href="landing.css?v=20261002e" />
+  <link rel="stylesheet" href="form.css?v=20261002g" />
+</head>
+<body>
+  <header class="nav is-scrolled">
+    <a class="brand" href="./" aria-label="stolik – strona główna">
+      <span class="brand-mark" aria-hidden="true">☕</span>
+      <span>stolik</span>
+    </a>
+    <nav class="nav-links" aria-label="Strony">
+      <a href="./">O projekcie</a>
+      <a href="mapa.html">Mapa</a>
+      <a href="zaproponuj.html" aria-current="page">Zaproponuj miejsce</a>
+    </nav>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Przełącz motyw">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1Z"/></svg>
+    </button>
+    <a class="btn btn-ghost btn-sm" href="mapa.html">Otwórz mapę</a>
+  </header>
+
+  <main class="suggest">
+    <div class="suggest-head">
+      <p class="eyebrow">Zaproponuj miejsce</p>
+      <h1>Znasz dobry stolik do pracy?</h1>
+      <p class="lead">Podpowiedz nam kawiarnię, coworking albo bibliotekę, w której dobrze się pracuje. Sprawdzimy ją i dodamy na mapę. Wystarczą nazwa, adres i rodzaj miejsca, resztę wypełnij, jeśli wiesz.</p>
+    </div>
+
+    <div class="suggest-grid">
+      <form class="card form" id="suggestForm" novalidate>
+        <div class="form-alert" id="formAlert" role="alert" hidden></div>
+
+        <fieldset>
+          <legend>Gdzie to jest?</legend>
+          <div class="field">
+            <label for="f-name">Nazwa miejsca <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-name" name="name" type="text" maxlength="120" autocomplete="off" placeholder="Kawiarnia Pod Lipą" required />
+            <p class="hint dup" id="dupHint" hidden></p>
+            <p class="err" data-err="name"></p>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="f-address">Adres <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-address" name="address" type="text" maxlength="160" autocomplete="off" placeholder="Wilcza 42" required />
+              <p class="err" data-err="address"></p>
+            </div>
+            <div class="field">
+              <label for="f-district">Dzielnica</label>
+              <select id="f-district" name="district"></select>
+              <p class="err" data-err="district"></p>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label" id="l-type">Rodzaj miejsca <span class="req" aria-hidden="true">*</span></span>
+            <div class="pills" role="radiogroup" aria-labelledby="l-type">
+              <label class="pill"><input type="radio" name="type" value="kawiarnia" checked /><span><i class="dot" style="background: var(--t-kawiarnia)"></i>Kawiarnia</span></label>
+              <label class="pill"><input type="radio" name="type" value="coworking" /><span><i class="dot" style="background: var(--t-coworking)"></i>Coworking</span></label>
+              <label class="pill"><input type="radio" name="type" value="biblioteka" /><span><i class="dot" style="background: var(--t-biblioteka)"></i>Biblioteka</span></label>
+              <label class="pill"><input type="radio" name="type" value="darmowe" /><span><i class="dot" style="background: var(--t-darmowe)"></i>Miejskie / za darmo</span></label>
+            </div>
+            <p class="err" data-err="type"></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Jak się tam pracuje? <span class="opt">opcjonalnie</span></legend>
+          <div class="field">
+            <span class="label" id="l-wifi">Wi-Fi</span>
+            <div class="pills pills-tight" role="radiogroup" aria-labelledby="l-wifi">
+              <label class="pill"><input type="radio" name="wifi" value="" checked /><span>Nie wiem</span></label>
+              <label class="pill"><input type="radio" name="wifi" value="1" /><span>1</span></label>
+              <label class="pill"><input type="radio" name="wifi" value="2" /><span>2</span></label>
+              <label class="pill"><input type="radio" name="wifi" value="3" /><span>3</span></label>
+              <label class="pill"><input type="radio" name="wifi" value="4" /><span>4</span></label>
+              <label class="pill"><input type="radio" name="wifi" value="5" /><span>5</span></label>
+            </div>
+            <p class="hint">1 = ledwo działa, 5 = spokojnie pociągnie calla z kamerą.</p>
+            <p class="err" data-err="wifi"></p>
+          </div>
+          <div class="field">
+            <span class="label" id="l-outlets">Gniazdka</span>
+            <div class="pills" role="radiogroup" aria-labelledby="l-outlets">
+              <label class="pill"><input type="radio" name="outlets" value="" checked /><span>Nie wiem</span></label>
+              <label class="pill"><input type="radio" name="outlets" value="dużo" /><span>Dużo</span></label>
+              <label class="pill"><input type="radio" name="outlets" value="średnio" /><span>Kilka</span></label>
+              <label class="pill"><input type="radio" name="outlets" value="mało" /><span>Prawie wcale</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label" id="l-noise">Hałas</span>
+            <div class="pills" role="radiogroup" aria-labelledby="l-noise">
+              <label class="pill"><input type="radio" name="noise" value="" checked /><span>Nie wiem</span></label>
+              <label class="pill"><input type="radio" name="noise" value="cicho" /><span>Cicho</span></label>
+              <label class="pill"><input type="radio" name="noise" value="umiarkowanie" /><span>Umiarkowanie</span></label>
+              <label class="pill"><input type="radio" name="noise" value="gwarno" /><span>Gwarno</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label" id="l-laptop">Laptopy</span>
+            <div class="pills" role="radiogroup" aria-labelledby="l-laptop">
+              <label class="pill"><input type="radio" name="laptop" value="" checked /><span>Nie wiem</span></label>
+              <label class="pill"><input type="radio" name="laptop" value="tak" /><span>Zawsze mile widziane</span></label>
+              <label class="pill"><input type="radio" name="laptop" value="ograniczenia" /><span>Są ograniczenia</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-note">Dlaczego warto tam pracować?</label>
+            <textarea id="f-note" name="note" rows="4" maxlength="1000" placeholder="Duże stoły przy oknach, w tygodniu rano spokojnie. Uwaga: w weekendy bywa tłoczno."></textarea>
+            <p class="hint counter"><span id="noteCount">0</span>/1000</p>
+            <p class="err" data-err="note"></p>
+          </div>
+        </fieldset>
+
+        <!-- Pułapka na boty: niewidoczna dla ludzi. -->
+        <div class="hp" aria-hidden="true">
+          <label for="f-website">Strona WWW</label>
+          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="form-foot">
+          <button class="btn btn-primary btn-lg" type="submit" id="submitBtn">
+            <span class="btn-label">Wyślij propozycję</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+          <p class="hint">Nie zbieramy danych osobowych, tylko informacje o miejscu.</p>
+        </div>
+      </form>
+
+      <aside class="preview" aria-label="Podgląd karty miejsca">
+        <p class="preview-label">Tak może wyglądać na mapie</p>
+        <article class="card pv-card">
+          <div class="pv-top">
+            <span class="pv-pin" id="pvPin" style="--c: var(--t-kawiarnia)"><b>?</b></span>
+            <div>
+              <h2 class="pv-name" id="pvName">Nazwa miejsca</h2>
+              <p class="pv-meta" id="pvMeta">Kawiarnia · Warszawa</p>
+            </div>
+          </div>
+          <ul class="pv-feats">
+            <li><span>📶 Wi-Fi</span><b id="pvWifi">brak danych</b></li>
+            <li><span>🔌 Gniazdka</span><b id="pvOutlets">brak danych</b></li>
+            <li><span>🎧 Hałas</span><b id="pvNoise">brak danych</b></li>
+            <li><span>💻 Laptopy</span><b id="pvLaptop">brak danych</b></li>
+          </ul>
+          <p class="pv-note" id="pvNote">Tu pojawi się Twój opis.</p>
+        </article>
+        <p class="preview-foot">Ocenę „do pracy” (1–5) wystawiamy sami po sprawdzeniu miejsca.</p>
+      </aside>
+    </div>
+
+    <section class="card success" id="success" hidden tabindex="-1" aria-live="polite">
+      <svg class="check" viewBox="0 0 52 52" width="72" height="72" aria-hidden="true">
+        <circle cx="26" cy="26" r="24" />
+        <path d="M15 27l7 7 15-16" />
+      </svg>
+      <h2>Dzięki, mamy to!</h2>
+      <p id="successText">Sprawdzimy miejsce i dodamy je na mapę.</p>
+      <div class="success-cta">
+        <button class="btn btn-primary btn-lg" type="button" id="againBtn">Zaproponuj kolejne</button>
+        <a class="btn btn-ghost btn-lg" href="mapa.html">Wróć do mapy</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">☕</span>
+      <span>stolik</span>
+    </div>
+    <nav aria-label="Stopka">
+      <a href="./">O projekcie</a>
+      <a href="mapa.html">Mapa</a>
+    </nav>
+    <p>Stan na październik 2026. Dane mapy © współtwórcy OpenStreetMap.</p>
+  </footer>
+
+  <script src="places.js?v=20261002e"></script>
+  <script src="zaproponuj.js?v=20261002e"></script>
+</body>
+</html>
